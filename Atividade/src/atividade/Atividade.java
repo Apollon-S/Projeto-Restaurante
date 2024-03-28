@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package atividade;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,8 +16,9 @@ public class Atividade {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Pessoa Pessoa01 = new Pessoa("Matheus", 16, "+55 (41) 99522-4639", "123.456.789-10");
+        Pessoa Pessoa01 = new Pessoa("Matheus", 16, "+55 (41) 99999-9999", "123.456.789-10");
         Pessoa01.mostrarinfo();
+        Caixa caixa01 = new Caixa("Caixa teste", 19, "+55 (41) 11111-1111", "109.876.543-21");
         
     }
     
@@ -26,6 +28,7 @@ public class Atividade {
     public int idade;
     public String telefone;
     public String cpf;
+    
     public void mostrarinfo() {
         System.out.println("Nome: "+nome+"\nIdade: "+idade+"\nTelefone: "+telefone+"\nCpf: "+cpf);   
     }
@@ -68,7 +71,18 @@ public class Atividade {
       
   }
   public class Caixa extends Funcionário{
-
+      Cliente cadastrodocliente() {
+          String nomecliente = JOptionPane.showInputDialog("Digite o nome do cliente: ");
+          int idadecliente = Integer.parseInt("Digite a idade do cliente: ");
+          String telefonecliente = JOptionPane.showInputDialog("Digite o telefone do cliente: ");
+          String cpfcliente = JOptionPane.showInputDialog("Digite o CPF do cliente: ");
+          return new Cliente(nomecliente, idadecliente, telefonecliente, cpf);
+          
+      }  
+      float vercontadocliente(Cliente cliente) {
+             System.out.println(cliente.gastos);
+             return cliente.gastos;
+        }
              public Caixa(String nome, int idade, String telefone, String cpf, float salário, String benefícios, String Folga, String horáriodetrabalho) {
                  super(nome, idade, telefone, cpf, salário, benefícios, Folga, horáriodetrabalho);
              }
