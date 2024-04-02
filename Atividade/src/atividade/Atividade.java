@@ -57,13 +57,53 @@ class Pessoa {
 
 class Cliente extends Pessoa {
 
-    public float gastos;
+    public double gastos;
     public int numerodamesa;
-
+    int escolhadocliente = 999;
+    int quantidadeescolhadocliente = 999;
+    
     public void pagar() {
         gastos = 0;
     }
-
+    public void fazerpedido() {
+        while (escolhadocliente != 0) {
+            escolhadocliente = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Item do Cliente: "));
+            quantidadeescolhadocliente = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de unidades do item que o cliente quer: "));
+            switch (escolhadocliente){
+                case 1:
+                    gastos = gastos + (39.90 * quantidadeescolhadocliente);
+                break;
+                case 2:
+                    gastos = gastos + (32.90 * quantidadeescolhadocliente);
+                break;
+                case 3:
+                    gastos = gastos + (36.70 * quantidadeescolhadocliente);
+                break;
+                    case 4:
+                    gastos = gastos + (10.50 * quantidadeescolhadocliente);
+                break;
+                    case 5:
+                    gastos = gastos + (17.70 * quantidadeescolhadocliente);
+                break;
+                    case 6:
+                    gastos = gastos + (14.90 * quantidadeescolhadocliente);
+                break;
+                case 7:
+                    gastos = gastos + (7.99 * quantidadeescolhadocliente);
+                break;
+                case 8:
+                    gastos = gastos + (26.50 * quantidadeescolhadocliente);
+                break;
+                case 9:
+                    gastos = gastos + (44.90 * quantidadeescolhadocliente);
+                break;
+                case 10:
+                    gastos = gastos + (109.90 * quantidadeescolhadocliente);
+                break;    
+            }
+        }
+        
+    }
     public Cliente(String nome, int idade, String telefone, String cpf) {
         super(nome, idade, telefone, cpf);
     }
