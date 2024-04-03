@@ -44,7 +44,7 @@ class Pessoa {
     public String cpf;
 
     public void mostrarinfo() {
-        System.out.println("Nome: " + nome + "\nIdade: " + idade + "\nTelefone: " + telefone + "\nCpf: " + cpf);
+        JOptionPane.showMessageDialog(null, "Nome: " + nome + "\nIdade: " + idade + "\nTelefone: " + telefone + "\nCpf: " + cpf);
     }
 
     Pessoa(String nome, int idade, String telefone, String cpf) {
@@ -61,49 +61,51 @@ class Cliente extends Pessoa {
     public int numerodamesa;
     int escolhadocliente = 999;
     int quantidadeescolhadocliente = 999;
-    
+
     public void pagar() {
         gastos = 0;
     }
+
     public void fazerpedido() {
-        while (escolhadocliente != 0) {
+        while (escolhadocliente != 0 && escolhadocliente < 11) {
             escolhadocliente = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Item do Cliente: "));
             quantidadeescolhadocliente = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de unidades do item que o cliente quer: "));
-            switch (escolhadocliente){
+            switch (escolhadocliente) {
                 case 1:
                     gastos = gastos + (39.90 * quantidadeescolhadocliente);
-                break;
+                    break;
                 case 2:
                     gastos = gastos + (32.90 * quantidadeescolhadocliente);
-                break;
+                    break;
                 case 3:
                     gastos = gastos + (36.70 * quantidadeescolhadocliente);
-                break;
-                    case 4:
+                    break;
+                case 4:
                     gastos = gastos + (10.50 * quantidadeescolhadocliente);
-                break;
-                    case 5:
+                    break;
+                case 5:
                     gastos = gastos + (17.70 * quantidadeescolhadocliente);
-                break;
-                    case 6:
+                    break;
+                case 6:
                     gastos = gastos + (14.90 * quantidadeescolhadocliente);
-                break;
+                    break;
                 case 7:
                     gastos = gastos + (7.99 * quantidadeescolhadocliente);
-                break;
+                    break;
                 case 8:
                     gastos = gastos + (26.50 * quantidadeescolhadocliente);
-                break;
+                    break;
                 case 9:
                     gastos = gastos + (44.90 * quantidadeescolhadocliente);
-                break;
+                    break;
                 case 10:
                     gastos = gastos + (109.90 * quantidadeescolhadocliente);
-                break;    
+                    break;
             }
         }
-        
+
     }
+
     public Cliente(String nome, int idade, String telefone, String cpf) {
         super(nome, idade, telefone, cpf);
     }
@@ -122,7 +124,13 @@ class Funcionário extends Pessoa {
 }
 
 class Supervisor extends Funcionário {
-
+    double alterarcontadocliente(Cliente cliente) {
+        cliente.gastos = 
+    }
+    double vercontadoclientesupervisor(Cliente cliente) {
+        System.out.println(cliente.gastos);
+        return cliente.gastos;
+    }
     public Supervisor(String nome, int idade, String telefone, String cpf, float salário, String benefícios, String Folga, String horáriodetrabalho) {
         super(nome, idade, telefone, cpf, salário, benefícios, Folga, horáriodetrabalho);
     }
@@ -153,7 +161,7 @@ class Caixa extends Funcionário {
 
     }
 
-    float vercontadocliente(Cliente cliente) {
+    double vercontadocliente(Cliente cliente) {
         System.out.println(cliente.gastos);
         return cliente.gastos;
     }
@@ -163,4 +171,3 @@ class Caixa extends Funcionário {
     }
 
 }
-
