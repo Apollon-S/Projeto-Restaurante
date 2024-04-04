@@ -21,8 +21,11 @@ public class Atividade {
         Caixa Arthur = new Caixa("Arthur Veiga", 16, "(41) 99999-9999", "111.111.111-11", 1894, "Vale alimentação, refeição, transporte e Gympass", "Todo feriado nacional", "Das 8h às 18h");
         Garçom Luiz = new Garçom("Luiz Brum", 16, "(41) 11111-1111", "222.222.222-22", 1474, "Vale alimentação, refeição e transporte", "Todo feriado nacional e todo dia 5 do mês", "Das 8h às 22h" );
         Supervisor Matheus = new Supervisor("Matheus Varistelo", 16, "(41) 55555-5555", "555.555.555-55", 8977, "Vale alimentação, refeição, transporte, acesso à plano de saúde e psicológico, cursos gratuitos no sistema 'Apollo', Gympass e cartão de desconto na compra de automóveis da linha Toyota", "Todo feriado nacional, 4 dias ao mês de escolha do funcionário", "Das 11h às 19h");
-        Arthur.cadastrodocliente();
-        Luiz.mostrarcardápio();
+        Cliente cliente01 = Arthur.cadastrodocliente();
+        cliente01.fazerpedido();
+        Arthur.vercontadocliente(cliente01);
+        Matheus.alterarcontadocliente(cliente01);
+        Matheus.vercontadoclientesupervisor(cliente01);
     }
 
 }
@@ -68,9 +71,11 @@ class Cliente extends Pessoa {
 
     public void fazerpedido() {
         while (escolhadocliente != 0) {
-            escolhadocliente = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Item do Cliente: "));
+            escolhadocliente = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Item do Cliente: (0 para terminar a compra)"));
             quantidadeescolhadocliente = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de unidades do item que o cliente quer: "));
             switch (escolhadocliente) {
+                case 0:
+                    break;
                 case 1:
                     gastos = gastos + (39.90 * quantidadeescolhadocliente);
                     break;
@@ -142,8 +147,9 @@ class Funcionário extends Pessoa {
 
 class Supervisor extends Funcionário {
     double alterarcontadocliente(Cliente cliente) {
-        cliente.gastos = JOptionPane.showInputDialog(Double.parseDouble("Olá, senhor supervisor! Digite o número no qual se deve alterar o valor da conta do cliente: "));
-    }
+        cliente.gastos = Double.parseDouble(JOptionPane.showInputDialog("Olá, senhor supervisor! Digite o número no qual se deve alterar o valor da conta do cliente: "));
+        return cliente.gastos;
+    } 
     double vercontadoclientesupervisor(Cliente cliente) {
         JOptionPane.showMessageDialog(null, cliente.gastos);
         return cliente.gastos;
@@ -179,7 +185,7 @@ class Caixa extends Funcionário {
     }
 
     double vercontadocliente(Cliente cliente) {
-        System.out.println(cliente.gastos);
+        JOptionPane.showMessageDialog(null, cliente.gastos);
         return cliente.gastos;
     }
 
